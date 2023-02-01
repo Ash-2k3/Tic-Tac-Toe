@@ -14,7 +14,7 @@ export class AppComponent {
   isCross = false;
   itemArray: string[] = new Array(9).fill('empty');
 
-  reloadGame = () => {
+  reloadGame(){
     this.winMessage = '';
     this.isCross = false;
     this.itemArray = new Array(9).fill('empty')
@@ -95,11 +95,13 @@ export class AppComponent {
       this.itemArray[itemNumber] = this.isCross ? 'cross' :'circle';
 
       this.isCross = !this.isCross;
+     
     }else{
       return this.toastr.info('Already Filled')
     }
 
     this.checkIsWinner ;
+    return
   }
 
 }

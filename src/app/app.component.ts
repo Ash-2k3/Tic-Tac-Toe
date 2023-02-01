@@ -100,7 +100,7 @@ export class AppComponent {
       return this.toastr.info('Already Filled')
     }
 
-    this.checkIsWinner ;
+    this.checkIsWinner() ;
     return
   }
 

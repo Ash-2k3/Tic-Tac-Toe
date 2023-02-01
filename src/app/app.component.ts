@@ -14,7 +14,7 @@ export class AppComponent {
   isCross = false;
   itemArray: string[] = new Array(9).fill('empty');
 
-  reloadGame(){
+  reloadGame() {
     this.winMessage = '';
     this.isCross = false;
     this.itemArray = new Array(9).fill('empty')
@@ -27,6 +27,8 @@ export class AppComponent {
       this.itemArray[0] === this.itemArray[2] &&
       this.itemArray[0] !== 'empty'
     ) {
+
+
       this.winMessage = `${this.itemArray[0]} won`
     }
     else if (
@@ -76,7 +78,7 @@ export class AppComponent {
     else if (
       this.itemArray[2] === this.itemArray[4] &&
       this.itemArray[4] === this.itemArray[6] &&
-      this.itemArray[0] !== 'empty'
+      this.itemArray[2] !== 'empty'
     ) {
       this.winMessage = `${this.itemArray[6]} won`
     }
@@ -86,21 +88,24 @@ export class AppComponent {
 
   constructor(private toastr: ToastrService) { }
 
-  handleClick = (itemNumber:number) =>{
-    if(this.winMessage){
+  handleClick = (itemNumber: number) => {
+
+    if (this.winMessage) {
       return this.toastr.success(this.winMessage);
     }
 
-    if(this.itemArray[itemNumber] === 'empty'){
-      this.itemArray[itemNumber] = this.isCross ? 'cross' :'circle';
+    if (this.itemArray[itemNumber] === 'empty') {
+      this.itemArray[itemNumber] = this.isCross ? 'cross' : 'circle';
 
       this.isCross = !this.isCross;
-     
-    }else{
+
+    } else {
       return this.toastr.info('Already Filled')
     }
+    console.log(this.itemArray[0]);
+    this.checkIsWinner();
 
-    this.checkIsWinner() ;
+
     return
   }
 
